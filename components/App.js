@@ -15,14 +15,15 @@ App = React.createClass({
         this.setState({
             loading: true  // 2.
         });
-        this.getGif(searchingText, function (gif) {  // 3.
-            this.setState({  // 4
-                loading: false,  // a
-                gif: gif,  // b
-                searchingText: searchingText  // c
-            });
-        }.bind(this));
-    },
+        this.getGif(searchingText)  // 3.
+            .then(function(gif) {
+                this.setState({  // 4
+                    loading: false,  // a
+                    gif: gif,  // b
+                    searchingText: searchingText  // c
+                });
+            })
+        },
 
     getGif: function (searchingText) {  // 1.
         return new Promise(
